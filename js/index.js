@@ -11,4 +11,12 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+
+    if (sessionStorage.getItem("sesionIniciada") === "true") {
+        const usuarioActual = sessionStorage.getItem("usuario");
+        console.log("Sesión iniciada para el usuario: " + usuarioActual);
+      } else {
+        window.location.href = "login.html";
+        console.log("Sesión no iniciada.");
+      }
 });
