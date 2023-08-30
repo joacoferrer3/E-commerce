@@ -39,3 +39,7 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener("DOMContentLoaded", ()=> {
+  document.getElementById("saludo-usuario").innerHTML = sessionStorage.getItem("usuario")
+})

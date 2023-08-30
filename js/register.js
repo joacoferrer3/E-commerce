@@ -17,9 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (nom || ape || ema=== '' || !term || contra || !emailPattern.test(ema) || (passw1.value !== passw2.value)) {
+    if (nom || ape || ema=== ''|| !term || contra || (passw1.value !== passw2.value)) {
         showAlertError();
-    } else {
+    } else if (!emailPattern.test(ema)) {
+        showAlertErrorEmail()
+    }else{
         window.location.href = "login.html";
     }
 })
@@ -27,4 +29,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function showAlertError() {
     document.getElementById("alert-danger").classList.add("show");
-} 
+};
+
+function showAlertErrorEmail() {
+    document.getElementById("alert-danger-mail").classList.add("show");
+}; 

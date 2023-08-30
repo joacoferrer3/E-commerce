@@ -20,8 +20,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        if (ema === '' || !emailPattern.test(ema) || contra) {
-            showAlertError();
+        if (ema === '' || contra) {
+            showAlertErrorEmpty();
+        } else if (!emailPattern.test(ema)) {
+            showAlertErrorEmail()
         } else {
             sessionStorage.setItem("sesionIniciada", "true");
             sessionStorage.setItem("usuario", email.value);
@@ -42,6 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-function showAlertError() {
+function showAlertErrorEmpty() {
     document.getElementById("alert-danger").classList.add("show");
+} 
+
+function showAlertErrorEmail() {
+    document.getElementById("alert-danger-mail").classList.add("show");
 } 
