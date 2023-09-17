@@ -2,11 +2,15 @@ const idCatSeleccionado = localStorage.getItem('catID');
 const urlActualizada = `https://japceibal.github.io/emercado-api/cats_products/${idCatSeleccionado}.json`
 var listContainer = document.getElementById("product-list-container")
 
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
 /*var productData = []*/
 
 var listContainer = document.getElementById("product-list-container")
 const convertToHtmlElem = (p) =>{
-    return `<div class="list-group-item list-group-item-action">
+    return `<div onclick="setProdID(${p.id})" class="list-group-item list-group-item-action">
         <div class="row">
             <div class="col-3">
                 <img src="${p.image}" alt="product image" class="img-thumbnail">

@@ -38,10 +38,23 @@
     </div>
   </nav>
   <main>
+    <div class="container" id="product-details-container">
+    </div>
+    <div class="container" id="comentarios"></div>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+        <label for="Item" class="form-label">Nuevo comentario:</label>
+        <textarea name="comentario" class="form-control" id="item" placeholder="Escribe tu comentario" required></textarea>
+        <label for="Item" class="form-label">Puntuación:</label>
+        <!-- <input type="number" class="list-group" id="puntuacion" min="1" max="5" required> -->
+        <div id="rating-control-container">
+          <span class="fa fa-star" data-value="1"></span>
+          <span class="fa fa-star" data-value="2"></span>
+          <span class="fa fa-star" data-value="3"></span>
+          <span class="fa fa-star" data-value="4"></span>
+          <span class="fa fa-star" data-value="5"></span>
+          <span id="rating-control-message"></span>
+        </div>
+        <button type="button" class="btn btn-primary my-3" id="agregar">Agregar comentario</button> 
     </div>
   </main>
   <footer class="text-muted">
