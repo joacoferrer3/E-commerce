@@ -18,5 +18,7 @@ document.addEventListener("DOMContentLoaded", function(){
       } else {
         window.location.href = "login.html";
         console.log("Sesión no iniciada.");
-      }
+    }
 });
+
+document.getElementById("sesion").addEventListener("click", () => logout());

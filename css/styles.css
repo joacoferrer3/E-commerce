@@ -15,6 +15,7 @@
 nav a {
   text-decoration: none;
 }
+
 #rating-control-container:hover{
   cursor: default;
 }
@@ -341,4 +342,31 @@ div {
 
 .no-pad {
   padding: 0px;
+}
+
+#toggleButton {
+  background-color: rgb(60, 60, 60);
+}
+
+body.darkmode {
+  background: #111111;
+  color: #fff;
+}
+
+body.darkmode h1, body.darkmode h2, body.darkmode h3, body.darkmode h4, body.darkmode h5, body.darkmode p {
+  color: #fff;
+}
+
+body.darkmode div {
+  background-color: #111111;
+}
+
+body.darkmode a {
+  color: #fff;
+  background-color: #111111;
+}
+
+body.darkmode label {
+  color: #fff;
+  background-color: #111111;
 }

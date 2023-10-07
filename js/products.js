@@ -204,3 +204,4 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 
+document.getElementById("sesion").addEventListener("click", () => logout());

@@ -43,3 +43,35 @@ let getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", ()=> {
   document.getElementById("saludo-usuario").innerHTML = sessionStorage.getItem("usuario")
 })
+
+function logout(){
+  sessionStorage.removeItem("usuario");
+  sessionStorage.removeItem("sesionIniciada");
+  sessionStorage.removeItem("sesionRecordada");
+  sessionStorage.removeItem("password");
+}
+
+//DarkMode function
+function darkMode() {
+  let toggleIcon = document.getElementById("toggleButtonIcon")
+  document.body.classList.toggle("darkmode");
+  toggleIcon.classList.toggle("fa-moon")
+  toggleIcon.classList.toggle("fa-sun")
+
+  const modoOscuro = document.body.classList.contains("darkmode");
+
+  localStorage.setItem('modoOscuro', modoOscuro);
+};
+
+window.addEventListener('load', () => {
+  const modoOscuroGuardado = localStorage.getItem('modoOscuro');
+
+  if (modoOscuroGuardado === 'true') {
+    darkMode();
+  }
+});
+
+// Darkmode Togglebutton
+document.getElementById("toggleButton").addEventListener("click", () => {
+  darkMode();
+});

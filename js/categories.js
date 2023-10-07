@@ -141,3 +141,5 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 });
+
+document.getElementById("sesion").addEventListener("click", () => logout());
