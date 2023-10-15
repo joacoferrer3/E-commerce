@@ -12,10 +12,10 @@ var listContainer = document.getElementById("product-list-container")
 const convertToHtmlElem = (p) =>{
     return `<div onclick="setProdID(${p.id})" class="list-group-item list-group-item-action">
         <div class="row">
-            <div class="col-3">
+            <div class="col-sm-3 col-md-4 col-lg-3">
                 <img src="${p.image}" alt="product image" class="img-thumbnail">
             </div>
-            <div class="col">
+            <div class="col-sm-9 col-md-8 col-lg-9">
                 <div class="d-flex w-100 justify-content-between">
                     <div class="mb-1">
                     <h4>${p.name} - ${p.currency} ${p.cost}</h4> 

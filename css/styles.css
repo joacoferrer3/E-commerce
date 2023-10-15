@@ -344,6 +344,12 @@ div {
   padding: 0px;
 }
 
+
+.text-center {
+  text-align: center;
+  vertical-align: middle;
+}
+
 #toggleButton {
   background-color: rgb(60, 60, 60);
 }
@@ -369,4 +375,8 @@ body.darkmode a {
 body.darkmode label {
   color: #fff;
   background-color: #111111;
+}
+.inputCantidad {
+  height: 20px;
+  width: 70px;
 }
