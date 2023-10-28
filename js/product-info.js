@@ -8,6 +8,20 @@ let containerRelatedProducts = document.getElementById(
   "contenedor-relacionados"
 );
 
+
+const alertaAgregado = () => {
+  const alertPlaceholder = document.getElementById('containerAlerta')
+  const wrapper = document.createElement('div')
+  wrapper.innerHTML = [
+    `<div class="alert alert-success alert-dismissible show fade" role="alert">`,
+    `   <div><strong>Articulo agregado correctamente!</strong> </div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    '</div>'
+  ].join('')
+
+  alertPlaceholder.append(wrapper)
+}
+
 //Plantilla para el carrusel
 const createCarrousel = (elem) => {
 
@@ -145,6 +159,7 @@ function agregarAlCarrito(prodDetail) {
     });
   }
   localStorage.setItem("cart", JSON.stringify(cart));
+  alertaAgregado()
 }
 
 //Redirige a la pagina que muestra la infromacion del producto seleccionado

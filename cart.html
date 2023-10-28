@@ -33,16 +33,17 @@
           </li>
           <div class="dropdown">
             <li class="nav-item">
-              <a class="btn btn-secondary dropdown-toggle" role="button" id="saludo-usuario" data-bs-toggle="dropdown" aria-expanded="false"></a>
+              <a class="btn btn-secondary dropdown-toggle" role="button" id="saludo-usuario" data-bs-toggle="dropdown"
+                aria-expanded="false"></a>
               <button type="button" id="toggleButton" class="btn btn-primary">
                 <i class="fa-solid fa-moon" id="toggleButtonIcon" style="color: #ff8000;"></i>
-            </button>
+              </button>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="login.html" id="sesion">Cerrar sesión</a></li>
               </ul>
-            </li>  
+            </li>
           </div>
         </ul>
       </div>
@@ -58,52 +59,197 @@
             <th class="text-center">Precio</th>
             <th class="text-center">Cantidad</th>
             <th class="text-center">Subtotal</th>
+            <th class="text-center"></th>
           </tr>
         </thead>
         <tbody id="elementos">
           <!-- Aquí se mostrará el contenido JSON -->
         </tbody>
       </table>
-    </div>   
-    <form>
-      <div class="container">
-        <hr>
+      <div id="alertaCarritoVacio"></div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+      <div id="alertExito"></div>
+      <form class="needs-validation" id="formulario" novalidate>
 
         <h4>Tipo de envío</h4>
 
         <div class="form-check">
-        <input type="radio" name="envio" id="premium" value="1" class="form-check-input mt-0"> Premium 2 a 5 días (15%) <br>
-        <input type="radio" name="envio" id="express" value="2" class="form-check-input mt-0"> Express 5 a 8 días (7%) <br>
-        <input type="radio" name="envio" id="standard" value="3" class="form-check-input mt-0"> Standard 12 a 15 días (5%) <br>
+
+          <input type="radio" name="envio" id="premium" value="1" class="form-check-input mt-0" required> Premium 2 a 5
+          días
+          (15%) <br>
+          <input type="radio" name="envio" id="express" value="2" class="form-check-input mt-0" required> Express 5 a 8
+          días (7%)
+          <br>
+          <input type="radio" name="envio" id="standard" value="3" class="form-check-input mt-0" required> Standard 12 a
+          15 días
+          (5%) <br>
+          <div class="invalid-feedback">
+            Selecciona un tipo de envío.
+          </div>
         </div>
 
         <hr>
 
-        <br><h4>Dirección de envío</h4>
+        <br>
+        <h4>Dirección de envío</h4>
 
         <div>
+
           <div class="input-group mb-3">
-          <span class="input-group-text">Calle</span>
-          <input type="text" class="form-control" id="calle" placeholder="Escriba el nombre de la calle aquí..." >
+            <span class="input-group-text">Calle</span>
+            <input type="text" class="form-control" id="calle" placeholder="Escriba el nombre de la calle aquí..."
+              required>
+            <div class="invalid-feedback">Ingresa la calle.</div>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">Número</span>
-            <input type="text" class="form-control" id="numero" placeholder="Escriba el número de la vivienda aquí..." >
+            <input type="number" class="form-control" id="numero" placeholder="Escriba el número de la vivienda aquí..."
+              required>
+            <div class="invalid-feedback">Ingresa número de la dirección.</div>
           </div>
           <div class="input-group mb-3">
-              <span class="input-group-text">Esquina</span>
-              <input type="text" class="form-control" id="esquina" placeholder="Escriba el nombre de la esquina aquí...">
+            <span class="input-group-text">Esquina</span>
+            <input type="text" class="form-control" id="esquina" placeholder="Escriba el nombre de la esquina aquí..."
+              required>
+            <div class="invalid-feedback">
+              Ingresa la esquina.
+            </div>
           </div>
         </div>
-      </div>
-  </form> 
+
+        <hr>
+
+        <h4>Costos</h4>
+        <div class="row">
+          <div class="list-group">
+            <div class="list-group-item">
+              <div class="row">
+                <div class="col-sm-9 col-md-8 col-lg-9">
+                  <div class="d-flex w-100">
+                    <div class="row flex-column">
+                      <div class="col">
+                        <h5>Subtotal</h5>
+                      </div>
+                      <div class="col">
+                        <p>Costo unitario del producto por cantidad</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-4 col-lg-3">
+                  <div class="d-flex w-100 flex-row justify-content-end">
+                    <small class="text-muted">USD <span id="subtotal-general"></span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="row">
+                <div class="col-sm-9 col-md-8 col-lg-9">
+                  <div class="d-flex w-100">
+                    <div class="row flex-column">
+                      <div class="col">
+                        <h5>Costo de envío</h5>
+                      </div>
+                      <div class="col">
+                        <p>Según el tipo de envío</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-4 col-lg-3">
+                  <div class="d-flex w-100 flex-row justify-content-end">
+                    <small class="text-muted">USD <span id="costo-envio"></span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="row">
+                <div class="col-sm-9 col-md-8 col-lg-9">
+                  <div class="d-flex w-100">
+                    <div class="row flex-column">
+                      <h5>Total ($)</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-md-4 col-lg-3">
+                  <div class="d-flex w-100 flex-row justify-content-end">
+                    <small class="font-weight-bold">USD <span id="total-compra"></span></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-check mt-4">
+          <h4>Forma de pago</h4>
+          <div id="pago">
+          </div>
+          <div class="text-danger" id="feedbackMessage">
+          </div>
+          <button id="botonModal" type="button" class="btn btn-outline-primary px-3 mb-4" data-bs-toggle="modal"
+            data-bs-target="#modalPago">Seleccionar</button>
+        </div>
+        <div class="modal fade" id="modalPago" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <h1 class="modal-title fs-5">Forma de pago</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <input type="radio" name="pago" id="credito" value="1" class="form-check-input" required>
+                <label class="form-check-label" for="pago">Tarjeta de crédito</label>
+                <br>
+                <hr>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Número de tarjeta</span>
+                  <input type="number" class="form-control" id="NumTarjeta" placeholder="Escriba su número de tarjeta"
+                    required>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Código de seguridad</span>
+                  <input type="number" class="form-control" id="CodSeguridad" placeholder="Escriba código de seguridad"
+                    required>
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Vencimiento (MM/AA)</span>
+                  <input type="month" class="form-control" id="vencimiento" placeholder="Escriba su vencimiento"
+                    required>
+                </div>
+                <input type="radio" name="pago" id="transferencia" value="2" class="form-check-input">
+                <label class="form-check-label" for="pago"> Transferencia bancaria</label>
+                <br>
+                <hr>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Número de cuenta</span>
+                  <input type="number" class="form-control" id="NumCuenta" placeholder="Escriba su número de cuenta"
+                    required>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 p-2">Finalizar Compra</button>
+      </form>
+    </div>
   </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">
