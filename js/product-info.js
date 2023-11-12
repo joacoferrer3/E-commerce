@@ -259,7 +259,7 @@ let estrellasInput = document
   .getElementsByClassName("fa-star");
 let selectedRating = 0;
 
-//
+//Actualiza la puntuacion dandole un puntaje
 const actualizarInputEstrellas = (rating) => {
   const mensajes = [
     "Horrible",
@@ -279,6 +279,7 @@ const actualizarInputEstrellas = (rating) => {
     rating >= 1 ? mensajes[rating - 1] : "";
 };
 
+//Función para agregar comentario
 botonAgregar.addEventListener("click", () => {
   if (input.value != "") {
     if (window.sessionStorage.getItem("text") == null) {

@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Sesión no iniciada.");
     }
 
+    //Función para control de los elementos al registarse
     logBtn.addEventListener("click", function(event) {
         event.preventDefault()
         const ema = email.value;
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    //Función para iniciar sesion    
     function iniciarSesion (){
         sessionStorage.setItem("password", password);
         sessionStorage.setItem("sesionRecordada", "true");

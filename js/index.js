@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 
+    //Condicion para el control del login
     if (sessionStorage.getItem("sesionIniciada") === "true") {
         const usuarioActual = sessionStorage.getItem("usuario");
         console.log("Sesión iniciada para el usuario: " + usuarioActual);

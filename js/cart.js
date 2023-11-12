@@ -4,6 +4,7 @@ var listContainer = document.getElementById("product-cart");
 let inputCantidad = document.getElementById("inputCantidad");
 let formaDePagoSeleccionada = 0;
 let cart = localStorage.getItem("cart") !== null ? JSON.parse(localStorage.getItem("cart")) : [];
+
 //Función para actualizar el subtotal dependiendo de la cantidad que ingrese el usuario.
 function updateSubtotal(inputElement, id) {
   const cantidad = parseInt(inputElement.value);
@@ -16,6 +17,7 @@ function updateSubtotal(inputElement, id) {
   refreshCartItems()
 };
 
+//Función para actualizar los elementos en el carrito
 function refreshCartItems(){
   tableBody.innerHTML = ''
   cart.forEach((p)=>{
@@ -25,10 +27,9 @@ function refreshCartItems(){
   })
   getSubtotalGeneral();
   getCostoTotalDeCompra();
-
 };
 
-
+//Función para eliminar elementos del carrito
 function removeItemFromCart(id){
   let prodInCart = cart.filter((elem) => elem.id === id)
   if (prodInCart.length > 0) {
@@ -38,6 +39,7 @@ function removeItemFromCart(id){
   refreshCartItems()
 }
 
+//Función para darle formato a los elementos incrustados
 const convertToHtmlElem = (p) => {  
 
     return `<tr onclick="setProdID(${p.id})">
@@ -56,6 +58,7 @@ const costoTotal = document.getElementById("total-compra");
 
 costoEnvio.innerHTML = 0;
 
+//Función para obtener el subtotal general en moneda USD
 function getSubtotalGeneral () {
  
  let costoTotal = 0
@@ -77,6 +80,7 @@ function getSubtotalGeneral () {
   getCostoEnvio(costoTotal);
 };
 
+//Función para actualizar el % del costo del envio
 function getCostoEnvio (subtotal) {
   let porcentaje = 0
   let radios = document.querySelectorAll('input[type="radio"]');
@@ -95,14 +99,15 @@ function getCostoEnvio (subtotal) {
         porcentaje = 0.05;
       }
       
-let total = (subtotal *  porcentaje).toFixed(2);
+      let total = (subtotal *  porcentaje).toFixed(2);
       
       costoEnvio.innerHTML = total;
       getCostoTotalDeCompra();
     });
   });
-  };
+};
 
+//Función para obtener el total del costo de la compra
 function getCostoTotalDeCompra() {
   let sub = parseFloat(subtotalGeneral.innerHTML);
   console.log(sub)
@@ -114,6 +119,7 @@ function getCostoTotalDeCompra() {
   costoTotal.innerHTML = total;
 };
 
+//Fetch Carrito
 document.addEventListener("DOMContentLoaded", () => {
   getJSONData(urlActualizada).then((response) => {
     try {
@@ -136,11 +142,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       refreshCartItems()
 
-    }catch (error) {
+    } catch (error) {
       console.log("no catch",error);
     }
   })
-  formaDePago()
+  formaDePago();
 });
 
 
@@ -151,15 +157,16 @@ var numTarj = document.getElementById("NumTarjeta");
 var codSeg = document.getElementById("CodSeguridad");
 var venc = document.getElementById("vencimiento");
 var cuenta = document.getElementById("NumCuenta");
-var formaPago = document.getElementById('pago')
+var formaPago = document.getElementById('pago');
 
-
+//Controles para mostrar elementos habilitados o deshabilitados segun forma de pago
 document.getElementById("credito").addEventListener("click", function(e) {
   cuenta.disabled = true;
   numTarj.disabled = false;
   codSeg.disabled = false;
   venc.disabled = false;
 })
+
 document.getElementById("transferencia").addEventListener("click", function(e) {
   numTarj.disabled = true;
   codSeg.disabled = true;
@@ -167,7 +174,7 @@ document.getElementById("transferencia").addEventListener("click", function(e) {
   cuenta.disabled = false;
 })
 
-
+//Función para controlar forma de pago
 function formaDePago() {
   let radiosPago = document.querySelectorAll('input[name="pago"]');
   radiosPago.forEach(function(radio) {
@@ -176,7 +183,10 @@ function formaDePago() {
     }
   )
 })
-  var myModalEl = document.getElementById('modalPago')
+
+var myModalEl = document.getElementById('modalPago')
+
+//Función para mostrar un modal segun forma de pago
 myModalEl.addEventListener('hidden.bs.modal', function () {
   if (formaDePagoSeleccionada === '1') {
     formaPago.innerHTML = "Se seleccionó pagar con tarjeta de crédito.";
@@ -190,6 +200,7 @@ myModalEl.addEventListener('hidden.bs.modal', function () {
 })
 }
 
+//Función para validaciones en modal
  function validarModal() {
   const feedbackMessage = document.getElementById('feedbackMessage');
   console.log(formaDePagoSeleccionada)
@@ -202,6 +213,7 @@ myModalEl.addEventListener('hidden.bs.modal', function () {
   }
 }
 
+//Función para checkear si el carrito es valido, es decir, no vacio
 function validarCarrito() {
   const alertaCarrito = document.getElementById('alertaCarritoVacio');
   if (cart.length == 0) {
@@ -216,15 +228,7 @@ function validarCarrito() {
   }
 }
 
-/*  function compraExitosa() {
-  const exito = document.getElementById('alertExito');
-  document.addEventListener('')
-  exito.innerHTML = `<div class="alert alert-success alert-dismissible show fade" role="alert">
-  <div class="text-center"> <strong> Has comprado con éxito </strong> </div>
-   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>`
-} */
-
+//Función para checkear que todas las condiciones se cumplen al momento de enviar la compra
 (function () {
   'use strict'
 
@@ -242,7 +246,6 @@ function validarCarrito() {
         else {
           alert("Has comprado con éxito")
         }
-
         form.classList.add('was-validated');
       }, false)
     })

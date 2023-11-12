@@ -6,6 +6,7 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+//Función para filtrar elementos segun criterio
 function sortCategories(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
@@ -35,11 +36,13 @@ function sortCategories(criteria, array){
     return result;
 }
 
+//Función para mostrar la categoria seleccionada segun id
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
 }
 
+//Función para mostrar las categorias y ordenarlas segun criterio
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
@@ -71,6 +74,7 @@ function showCategoriesList(){
     }
 }
 
+//Función para reordenar segun criterio
 function sortAndShowCategories(sortCriteria, categoriesArray){
     currentSortCriteria = sortCriteria;
 
@@ -92,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function(e){
         if (resultObj.status === "ok"){
             currentCategoriesArray = resultObj.data
             showCategoriesList()
-            //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
 

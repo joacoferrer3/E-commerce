@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const terminos = document.getElementById("terminos");
     const regisBtn = document.getElementById("registerBtn");
 
+    //Control para los elementos del registrer
+
     regisBtn.addEventListener("click", function(event){
         event.preventDefault();
         const nom = nombre.value === '';

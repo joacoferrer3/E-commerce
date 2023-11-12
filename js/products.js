@@ -6,9 +6,11 @@ function setProdID(id) {
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
 }
-/*var productData = []*/
+
 
 var listContainer = document.getElementById("product-list-container")
+
+//Plantilla para la colocacion de los elementos
 const convertToHtmlElem = (p) =>{
     return `<div onclick="setProdID(${p.id})" class="list-group-item list-group-item-action">
         <div class="row">
@@ -42,7 +44,7 @@ getJSONData(urlActualizada).then((response) => {
 searchTerm = document.getElementById("searchInput").value.toUpperCase()
 var searchChange = false
 
-setInterval(()=>{
+setInterval(()=>{ //Al ver que refrescar la lista en cada tecla apretada generaba un parpadeo indeseado usamos un intervalo que cada medio segundo evalua si la busqueda cambio y refresca la lista SOLO de ser asi
     if(searchChange){
         searchTerm = document.getElementById("searchInput").value.toUpperCase()
         showProductList()
@@ -51,9 +53,6 @@ setInterval(()=>{
 },400)
 
 document.getElementById("searchInput").addEventListener("input",(e)=>{
-    //console.log(document.getElementById("searchInput").value)
-    //searchTerm = document.getElementById("searchInput").value.toUpperCase()
-    //showProductList()
     searchChange = true
 })
 
@@ -67,6 +66,7 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
+//Función para filtrar elementos segun criterio
 function sortElements(criteria, array){
     let result = [];
     if (criteria === ascendente)
@@ -103,36 +103,40 @@ function setCatID(id) {
 function showProductList(){
     listContainer.innerHTML = "" //Vacia la lista
     currentProductsArray.forEach(p => {
+        //En este IF evaluamos si el producto a procesar cumple con los criterios de Minimo,Maximo y busqueda
         if (((minCount == undefined) || (minCount != undefined && parseInt(p.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(p.cost) <= maxCount)) &&
             ((searchTerm == "") || (searchTerm != "" && p.name.toUpperCase().includes(searchTerm)))){
+            //De ser asi creamos un nuevo elemento DOM en la variable newElement
             let newElement = document.createElement('div')
+            //Seteamos los estilos del nuevo elemento comenzando con su opacidad a 0 
             newElement.classList.add("container")
             newElement.style.opacity = 0
-            newElement.style.transition = "opacity 0.7s ease-in"
+            newElement.style.transition = "opacity 0.5s ease-in"
+            //y le asignamos el texto HTML generado por la funcion a su inner
             newElement.innerHTML = convertToHtmlElem(p)
+             //El proximo bloque se encarga de resaltar el texto buscado en el titulo de los resultados, se ejecuta cuando el buscador no esta vacio
             if(searchTerm != ''){
-                let highlightStart = newElement.getElementsByTagName('h4')[0].innerHTML.toUpperCase().indexOf(searchTerm)
-                let highlightEnd = highlightStart + searchTerm.length
-                let nameText = newElement.getElementsByTagName('h4')[0].innerHTML
-                console.log(highlightStart,highlightEnd)
+                let highlightStart = newElement.getElementsByTagName('h4')[0].innerHTML.toUpperCase().indexOf(searchTerm)//Hallamos la posicion del titulo donde comienza el searchterm
+                let highlightEnd = highlightStart + searchTerm.length //Con el largo del searchterm obtenemos la posicion final
+                let nameText = newElement.getElementsByTagName('h4')[0].innerHTML //Obtenemos el nombre del producto
+                //La proxima linea se encarga de modificat el texto del h4 para que el texto a resaltar quede en un span de clase "highlighted-search"
                 newElement.getElementsByTagName('h4')[0].innerHTML = nameText.slice(0,highlightStart) + '<span class="highlighted-search">' + nameText.slice(highlightStart,highlightEnd) + '</span>' + nameText.slice(highlightEnd)
-                console.log(newElement.getElementsByTagName('h4')[0].innerHTML)
             }
-            listContainer.appendChild(newElement)
+            listContainer.appendChild(newElement)//Agregamos el producto a la lista
         }
     })
-    if(listContainer.childNodes.length <= 0){
+    if(listContainer.childNodes.length <= 0){//El proximo bloque genera un texto informatvo si no hay productos que mostrar
         let newElement = document.createElement('h3')
         newElement.style.opacity = 0
-        newElement.style.transition = "opacity 0.2s"
+        newElement.style.transition = "opacity 0.1s"
         newElement.innerText = `No se hallaron productos con nombre ${searchTerm}`
         listContainer.appendChild(newElement)
     }
-    for (let i = 0; i < listContainer.childNodes.length; i++) {
+    for (let i = 0; i < listContainer.childNodes.length; i++) { //Finalmente cambiamos la opacidad de todos los resultados a 1 secuencialmente logrando un efecto de animacion
         setTimeout(()=>{
             listContainer.childNodes[i].style.opacity = 1
-        },500*i)
+        },250*i)
     }
 }
 
