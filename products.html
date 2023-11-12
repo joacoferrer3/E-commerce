@@ -15,6 +15,7 @@
 </head>
 
 <body>
+  <!-- NAV BAR START -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -34,26 +35,33 @@
           </li>
           <div class="dropdown">
             <li class="nav-item">
-              <a class="btn btn-secondary dropdown-toggle" role="button" id="saludo-usuario" data-bs-toggle="dropdown" aria-expanded="false"></a>
+              <a class="btn btn-secondary dropdown-toggle" role="button" id="saludo-usuario" data-bs-toggle="dropdown"
+                aria-expanded="false"></a>
               <button type="button" id="toggleButton" class="btn btn-primary">
                 <i class="fa-solid fa-moon" id="toggleButtonIcon" style="color: #ff8000;"></i>
-            </button>
+              </button>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" id="perfil">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="login.html" id="sesion">Cerrar sesión</a></li>
               </ul>
-            </li>  
+            </li>
           </div>
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- NAV BAR END -->
+
   <main class="pb-5 container">
     <div class="text-center p-4">
       <h2>Productos</h2>
       <h3 id="products-subtitle"></h3>
     </div>
+
+  <!-- PRODUCTS FILTER START -->
+
     <div class="container">
       <div class="row">
         <div class="col text-end">
@@ -92,10 +100,15 @@
         </div>
       </div>
     </div>
-    <div class="container" id="product-list-container">
     
+    <!-- PRODUCTS FILTER END -->
+
+    <!-- PRODUCTS DISPLAY -->
+    <div class="container" id="product-list-container">
     </div>
+
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -104,6 +117,7 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -112,9 +126,11 @@
       <div></div>
     </div>
   </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/products.js"></script>
+
 </body>
 
 </html>

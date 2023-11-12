@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  <!-- NAV BAR START -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -23,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Inicio</a>
+            <a class="nav-link" href="index.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -33,22 +34,29 @@
           </li>
           <div class="dropdown">
             <li class="nav-item">
-              <a class="btn btn-secondary dropdown-toggle" role="button" id="saludo-usuario" data-bs-toggle="dropdown" aria-expanded="false"></a>
-                    <button type="button" id="toggleButton" class="btn btn-primary">
-            <i class="fa-solid fa-moon" id="toggleButtonIcon" style="color: #ff8000;"></i>
-        </button>
+              <a class="btn btn-secondary dropdown-toggle" role="button" id="saludo-usuario" data-bs-toggle="dropdown"
+                aria-expanded="false"></a>
+              <button type="button" id="toggleButton" class="btn btn-primary">
+                <i class="fa-solid fa-moon" id="toggleButtonIcon" style="color: #ff8000;"></i>
+              </button>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" id="perfil">Mi perfil</a></li>
                 <li><a class="dropdown-item" href="login.html" id="sesion">Cerrar sesión</a></li>
               </ul>
-            </li>  
+            </li>
           </div>
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- NAV BAR END -->
+
   <main>
+
+    <!-- INDEX START -->
+
     <div class="jumbotron text-center"></div>
     <div class="album py-5">
       <div class="container">
@@ -89,7 +97,11 @@
         </div>
       </div>
     </div>
+
+  <!-- INDEX END -->
+
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
@@ -98,9 +110,11 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/init.js"></script>
+  
 </body>
 
 </html>

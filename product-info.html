@@ -26,32 +26,41 @@
   </head>
 
   <body>
+  
+  <!-- ALERT CONTAINER -->
     <div id="containerAlerta">
-      
     </div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-      <div class="container">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav w-100 justify-content-between">
+
+  <!-- NAV BAR START -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <div class="dropdown">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="categories.html">Categorías</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="sell.html">Vender</a>
+              <a class="btn btn-secondary dropdown-toggle" role="button" id="saludo-usuario" data-bs-toggle="dropdown"
+                aria-expanded="false"></a>
+              <button type="button" id="toggleButton" class="btn btn-primary">
+                <i class="fa-solid fa-moon" id="toggleButtonIcon" style="color: #ff8000;"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item" href="login.html" id="sesion">Cerrar sesión</a></li>
+              </ul>
             </li>
             <div class="dropdown">
               <li class="nav-item">
@@ -60,31 +69,22 @@
                   role="button"
                   id="saludo-usuario"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                ></a>
+                  aria-expanded="false"></a>
                 <button type="button" id="toggleButton" class="btn btn-primary">
                   <i
                     class="fa-solid fa-moon"
                     id="toggleButtonIcon"
-                    style="color: #ff8000"
-                  ></i>
+                    style="color: #ff8000"></i>
                 </button>
-                <ul
-                  class="dropdown-menu dropdown-menu-dark dropdown-menu-end"
-                  aria-labelledby="dropdownMenuLink"
-                >
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                   <li>
                     <a class="dropdown-item" href="cart.html">Mi carrito</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="my-profile.html"
-                      >Mi perfil</a
-                    >
+                    <a class="dropdown-item" id="perfil">Mi perfil</a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="login.html" id="sesion"
-                      >Cerrar sesión</a
-                    >
+                    <a class="dropdown-item" href="login.html" id="sesion">Cerrar sesión</a>
                   </li>
                 </ul>
               </li>
@@ -92,9 +92,16 @@
           </ul>
         </div>
       </div>
-    </nav>
+    </div>
+  </nav>
+
+  <!-- NAV BAR END -->
+
     <main>
+    <!-- PRODUCTS DETAIL -->
       <div class="container" id="product-details-container"></div>
+
+    <!-- COMENTS CONTAINER START -->  
       <div class="container" id="comentarios"></div>
       <div class="container">
         <label for="Item" class="form-label">Nuevo comentario:</label>
@@ -106,7 +113,7 @@
           required
         ></textarea>
         <label for="Item" class="form-label">Puntuación:</label>
-        <!-- <input type="number" class="list-group" id="puntuacion" min="1" max="5" required> -->
+        <!-- STARS -->
         <div id="rating-control-container">
           <span class="fa fa-star" data-value="1"></span>
           <span class="fa fa-star" data-value="2"></span>
@@ -119,14 +126,17 @@
           Agregar comentario
         </button>
       </div>
+    <!-- COMENTS CONTAINER END -->   
+    
+    <hr/>
 
-      <hr />
-
+    <!-- RELATED PRODUTCS --> 
       <div class="container">
         <div id="contenedor-relacionados" class="row"></div>
       </div>
 
     </main>
+
     <footer class="text-muted">
       <div class="container">
         <p class="float-end">
@@ -134,12 +144,11 @@
         </p>
         <p>
           Este sitio forma parte de
-          <a href="https://jovenesaprogramar.edu.uy/" target="_blank"
-            >Jovenes a Programar</a
-          >
+          <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
         </p>
       </div>
     </footer>
+
     <div id="spinner-wrapper">
       <div class="lds-ring">
         <div></div>
@@ -148,8 +157,10 @@
         <div></div>
       </div>
     </div>
+
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script src="js/product-info.js"></script>
+    
   </body>
 </html>
